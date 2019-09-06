@@ -17,11 +17,15 @@ class MailgunMailerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/mailgun-mailer.php' => config_path('mailgun-mailer.php')
-            ], 'mailgun-mailer');
+            ], 'mailgun-mailer-config');
 
             $this->publishes([
                 __DIR__.'/../public/' => public_path('vendor/mailgun-mailer/')
-            ], 'mailgun-mailer');
+            ], 'mailgun-mailer-assets');
+
+            $this->publishes([
+                __DIR__.'/../public/fonts' => public_path('fonts/')
+            ], 'mailgun-mailer-assets');
 
             $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
 

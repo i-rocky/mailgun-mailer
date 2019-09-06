@@ -28,9 +28,15 @@ class InstallMailgunMailer extends Command
      */
     public function handle()
     {
-        Artisan::call('vendor:publish', ['--tag' => 'mailgun-mailer']);
+        Artisan::call('vendor:publish', [
+            '--tag' => 'mailgun-mailer-config'
+        ]);
         $this->info(Artisan::output());
-        Artisan::call('vendor:publish', ['--provider' => Rocky\MailgunMailer\Providers\MailgunMailerServiceProvider::class]);
+
+        Artisan::call('vendor:publish', [
+            '--tag'   => 'mailgun-mailer-assets',
+            '--force' => true,
+        ]);
         $this->info(Artisan::output());
     }
 }
