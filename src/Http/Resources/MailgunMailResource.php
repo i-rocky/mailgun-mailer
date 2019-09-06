@@ -21,6 +21,7 @@ use Rocky\MailgunMailer\Models\MailAttachment;
  * @property string direction
  * @property Carbon updated_at
  * @property Carbon created_at
+ * @property Carbon read_at
  * @property MailAttachment[] attachments
  */
 class MailgunMailResource extends JsonResource
@@ -44,6 +45,7 @@ class MailgunMailResource extends JsonResource
             'body'            => $this->body,
             'direction'       => $this->direction,
             'created_at'      => $this->created_at->toIso8601String(),
+            'read_at'         => $this->read_at->toIso8601String(),
             'attachments'     => $this
                 ->whenLoaded('attachments', MailAttachmentResource::collection($this->attachments)),
         ];

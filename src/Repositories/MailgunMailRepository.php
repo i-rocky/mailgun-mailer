@@ -21,6 +21,7 @@ class MailgunMailRepository
         $mail = new MailgunMail();
         $mail->fill($request->only($mail->getFillable()));
         $mail->direction = 'outbound';
+        $mail->read_at   = now();
         $mail->save();
 
         return $mail;

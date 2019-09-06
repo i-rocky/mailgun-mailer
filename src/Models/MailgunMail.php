@@ -22,6 +22,7 @@ use Rocky\MailgunMailer\Jobs\SendMail;
  * @property string direction
  * @property Carbon updated_at
  * @property Carbon created_at
+ * @property Carbon read_at
  * @property MailAttachment[] attachments
  */
 class MailgunMail extends Model
@@ -34,6 +35,11 @@ class MailgunMail extends Model
         'subject',
         'body',
         'direction',
+        'read_at',
+    ];
+
+    protected $casts = [
+        'read_at' => 'datetime',
     ];
 
     /**
