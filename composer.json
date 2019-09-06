@@ -1,0 +1,25 @@
+{
+  "name": "i-rocky/mailgun-mailer",
+  "description": "MailGun mailer for laravel",
+  "version": "1.0.0",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Rocky",
+      "email": "wpkpda@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Rocky\\MailgunMailer\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "\\Rocky\\MailgunMailer\\Providers\\MailgunMailerServiceProvider"
+      ]
+    }
+  }
+}

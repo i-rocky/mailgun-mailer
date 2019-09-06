@@ -1,0 +1,24 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "Chrome >= 52",
+            "FireFox >= 44",
+            "Safari >= 7",
+            "Explorer 11",
+            "last 4 Edge versions"
+          ]
+        },
+        "useBuiltIns": "usage",
+        "shippedProposals": true,
+        "corejs": 3
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-class-properties"
+  ]
+}
