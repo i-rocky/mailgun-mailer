@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+const exec = require('child_process').exec;
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -15,7 +15,19 @@ mix.setPublicPath('./public');
 
 if (!mix.inProduction()) {
   mix.webpackConfig({
-    devtool: 'inline-source-map',
+    devtool: 'inline-source-map',  plugins: [
+
+      {
+        apply: (compiler) => {
+          compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
+            exec('cd /home/rocky/Documents/www/equity-release-comparision && php artisan mailgun:install', (err, stdout, stderr) => {
+              if (stdout) process.stdout.write(stdout);
+              if (stderr) process.stderr.write(stderr);
+            });
+          });
+        }
+      }
+    ]
   });
 }
 

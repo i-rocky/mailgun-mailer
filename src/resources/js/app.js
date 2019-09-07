@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import router from './router';
 import ErrorHandler from './mixins/ErrorHandler';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 
 require('./bootstrap');
 
