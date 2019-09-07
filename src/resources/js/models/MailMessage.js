@@ -9,6 +9,8 @@ export default class MailMessage {
   direction;
   read_at;
 
+  text;
+
   constructor(id,
               sender_name, sender_email,
               recipient_name, recipient_email,
@@ -24,9 +26,17 @@ export default class MailMessage {
     this.direction = direction || null;
     this.read_at = read_at || null;
 
+    const div = document.createElement('div');
+    div.innerHTML = this.body;
+
+    this.text = div.innerText;
   }
 
   get read() {
     return this.read_at !== null;
+  }
+
+  get excerpt() {
+    return `<strong>${this.subject}</strong> - ${this.text}`
   }
 }
