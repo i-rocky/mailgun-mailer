@@ -27,6 +27,18 @@ class MailAttachment extends Model
         'path',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function (MailAttachment $attachment) {
+            $file = storage_path($attachment->path);
+            if ($file) {
+                unlink($file);
+            }
+        });
+    }
+
     /**
      * @return BelongsTo
      */

@@ -24,6 +24,9 @@
 
   export default {
     name: 'MailList',
+    props: {
+      box: String,
+    },
     data() {
       return {
         mails: [],
@@ -35,7 +38,7 @@
     methods: {
       loadMails() {
         MailMessageAPI
-          .get()
+          .get(this.box)
           .then(mails => {
             this.mails = mails;
           })

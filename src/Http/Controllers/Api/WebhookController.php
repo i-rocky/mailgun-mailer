@@ -2,8 +2,10 @@
 
 namespace Rocky\MailgunMailer\Http\Controllers\Api;
 
-use App\Events\NewInboundMail;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Rocky\MailgunMailer\Events\NewInboundMail;
+use Rocky\MailgunMailer\Models\MailAttachment;
 use Rocky\MailgunMailer\Models\MailgunMail;
 
 class WebhookController
@@ -41,8 +43,21 @@ class WebhookController
 
         $mail->save();
 
-        // TODO: accept attachments
+        foreach ($request->files as $key => $_) {
+            /** @var UploadedFile $file */
+            $file = $request->file($key);
+            $file->storeAs('public/attachments', $file->hashName());
+
+            $attachment = new MailAttachment();
+            $attachment->mail()->associate($mail);
+
+            $attachment->filename = $file->getFilename();
+            $attachment->path     = $file->hashName('app/public/attachments');
+            $attachment->save();
+        }
 
         event(new NewInboundMail($mail));
+
+        return response()->json(['message' => 'Mail Received']);
     }
 }

@@ -5,6 +5,7 @@ namespace Rocky\MailgunMailer\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Rocky\MailgunMailer\Jobs\SendMail;
 
 /**
@@ -27,6 +28,9 @@ use Rocky\MailgunMailer\Jobs\SendMail;
  */
 class MailgunMail extends Model
 {
+
+    use SoftDeletes;
+
     protected $fillable = [
         'sender_name',
         'sender_email',
@@ -53,6 +57,10 @@ class MailgunMail extends Model
             if ($mail->isOutbound()) {
                 dispatch(new SendMail($mail));
             }
+        });
+
+        static::deleting(function(MailgunMail $mail) {
+            $mail->attachments->each->delete();
         });
     }
 

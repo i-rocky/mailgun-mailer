@@ -55,6 +55,22 @@ class MailgunMailRepository
             });
         }
 
+        if ($request->has('box')) {
+            $box = $request->get('box');
+            if($box === 'inbox') {
+                $query->where('direction', 'inbound');
+            }
+            elseif($box === 'sent') {
+                $query->where('direction', 'outbound');
+            }
+            if ($box==='trash') {
+                $query->where('direction', 'inbound')->onlyTrashed();
+            }
+            else {
+                $query->withoutTrashed();
+            }
+        }
+
         return $query->paginate($request->get('per-page', 10));
     }
 }

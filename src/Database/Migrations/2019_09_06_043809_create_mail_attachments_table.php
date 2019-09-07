@@ -14,7 +14,7 @@ class CreateMailAttachmentsTable extends Migration
     public function up()
     {
         Schema::create('mail_attachments', function (Blueprint $table) {
-            $table->unsignedBigInteger('mailgun_mail_id');
+            $table->unsignedBigInteger('mail_id');
             $table->string('filename');
             $table->string('path');
         });

@@ -23,6 +23,7 @@ class CreateMailgunMailsTable extends Migration
             $table->longText('body');
             $table->enum('direction', ['inbound', 'outbound']);
             $table->dateTime('read_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace Rocky\MailgunMailer\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Rocky\MailgunMailer\Console\Commands\InstallMailgunMailer;
+use Rocky\MailgunMailer\Http\Middleware\VerifyMailgunSecret;
 
 class MailgunMailerServiceProvider extends ServiceProvider
 {
@@ -43,10 +44,12 @@ class MailgunMailerServiceProvider extends ServiceProvider
      * Register services.
      *
      * @return void
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/mailgun-mailer.php', 'mailgun-mailer');
+        $this->app->make('router')->aliasMiddleware('verify-mailgun-secret', VerifyMailgunSecret::class);
     }
 
     /**

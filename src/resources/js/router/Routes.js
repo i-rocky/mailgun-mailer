@@ -1,6 +1,6 @@
-import Inbox from '../components/pages/inbox/Inbox';
-import Sent from '../components/pages/Sent/Sent';
-import Trash from '../components/pages/trash/Trash';
+import Inbox from '../components/pages/mails/inbox/Inbox';
+import Sent from '../components/pages/mails/Sent/Sent';
+import Trash from '../components/pages/mails/trash/Trash';
 import Templates from '../components/pages/templates/Templates';
 import Composer from '../components/pages/compose/Composer';
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Rocky\MailgunMailer\Http\Middleware;
 
 use Closure;
 
@@ -11,10 +11,16 @@ class VerifyMailgunSecret
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
+        $secret = $request->route('secret');
+        if (config('mailgun-mailer.secret') !== $secret) {
+            return abort(419);
+        }
+
         return $next($request);
     }
 }

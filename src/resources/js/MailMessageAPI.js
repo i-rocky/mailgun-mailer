@@ -2,10 +2,10 @@ import httpService from './services/httpService';
 import MailMessageMapper from './mappers/MailMessageMapper';
 
 export default {
-  get() {
+  get(box) {
     return new Promise((resolve, reject) => {
       httpService
-        .get('mails')
+        .get(`mails`, {box})
         .then(response => resolve(MailMessageMapper.mapMailMessagesToClient(response.data)))
         .catch(error => reject(error));
     });
