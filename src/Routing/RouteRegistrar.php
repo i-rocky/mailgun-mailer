@@ -93,6 +93,11 @@ class RouteRegistrar
         $router->get('mailgun', 'MailgunController@index')
                ->middleware($this->getMiddleware('auth'))
                ->name('mailgun.mailer');
+
+        $router->get('{mailgun}', 'MailgunController@index')
+               ->where('mailgun', 'mailgun.+')
+               ->middleware($this->getMiddleware('auth'));
+
     }
 
     /**

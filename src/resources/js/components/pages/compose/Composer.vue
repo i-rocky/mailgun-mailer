@@ -91,8 +91,13 @@
                             </div>
 
                             <div class="col-md-12 right">
-                                <input type="submit" class="btn btn-success btn-send" @click="send"
-                                       value="Send message">
+                                <button
+                                        class="btn btn-success btn-send"
+                                        :disabled="sending"
+                                        @click="send">
+                                    <i v-if="sending" class="fa fa-spin fa-spinner"></i>
+                                    <span v-else>Send</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -112,6 +117,7 @@
   import MailMessage from '../../../models/MailMessage';
   import MailMessageFactory from '../../../factories/MailMessageFactory';
   import MailMessageAPI from '../../../MailMessageAPI';
+  import message from '../../../helpers/message';
 
   let mailEditor;
 
@@ -124,6 +130,7 @@
     data() {
       return {
         mailMessage: MailMessageFactory.getDummy(),
+        sending: false,
       };
     },
     mounted() {
@@ -173,16 +180,18 @@
 
       },
       send() {
+        this.sending = true;
         MailMessageAPI
           .send(this.mailMessage)
           .then(response => {
-            console.log(response);
+            message.success(response.message);
+            this.$router.push({name: 'sent'});
           })
           .catch(error => {
-            console.log(error);
+            message.error(error.message);
           })
           .finally(() => {
-            console.log('done');
+            this.sending = false;
           });
       },
     },

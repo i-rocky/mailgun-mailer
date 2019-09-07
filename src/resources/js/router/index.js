@@ -3,7 +3,7 @@ import routes from './Routes';
 
 const router = new VueRouter({
   mode: 'history',
-  base: window.location.pathname + '#!',
+  base: 'mailgun',
   routes,
   scrollBehavior() {
     return {x: 0, y: 0};

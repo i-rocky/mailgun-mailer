@@ -26,6 +26,7 @@
     "pusher-js": "^5.0.1",
     "sweetalert2": "^8.17.1",
     "tinymce": "^5.0.15",
+    "toastr": "^2.1.4",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
   },
