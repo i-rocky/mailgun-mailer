@@ -44,3 +44,7 @@ body {
         margin-left: -15rem;
     }
 }
+
+a.router-link-active {
+    background: aqua !important;
+}

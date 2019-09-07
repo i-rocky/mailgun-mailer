@@ -13,8 +13,8 @@ use Rocky\MailgunMailer\Jobs\SendMail;
  * @package Rocky\MailgunMailer\Models
  *
  * @property int id
- * @property string from_name
- * @property string from_email
+ * @property string sender_name
+ * @property string sender_email
  * @property string recipient_name
  * @property string recipient_email
  * @property string subject
@@ -28,8 +28,8 @@ use Rocky\MailgunMailer\Jobs\SendMail;
 class MailgunMail extends Model
 {
     protected $fillable = [
-        'from_name',
-        'from_email',
+        'sender_name',
+        'sender_email',
         'recipient_name',
         'recipient_email',
         'subject',

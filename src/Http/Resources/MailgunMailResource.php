@@ -12,8 +12,8 @@ use Rocky\MailgunMailer\Models\MailAttachment;
  * @package Rocky\MailgunMailer\Http\Resources
  *
  * @property int id
- * @property string from_name
- * @property string from_email
+ * @property string sender_name
+ * @property string sender_email
  * @property string recipient_name
  * @property string recipient_email
  * @property string subject
@@ -37,8 +37,8 @@ class MailgunMailResource extends JsonResource
     {
         return [
             'id'              => $this->id,
-            'from_name'       => $this->from_name,
-            'from_email'      => $this->from_email,
+            'sender_name'     => $this->sender_name,
+            'sender_email'    => $this->sender_email,
             'recipient_name'  => $this->recipient_name,
             'recipient_email' => $this->recipient_email,
             'subject'         => $this->subject,

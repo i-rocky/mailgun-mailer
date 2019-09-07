@@ -34,8 +34,8 @@ class MailgunOutboundMail extends Mailable
     public function build()
     {
         return $this
-            ->from($this->mail->from_email, $this->mail->from_name)
-            ->replyTo($this->mail->from_email, $this->mail->from_name)
+            ->from($this->mail->sender_email, $this->mail->sender_name)
+            ->replyTo($this->mail->sender_email, $this->mail->sender_name)
             ->subject($this->mail->subject)
             ->with(['content' => $this->mail->body])
             ->view('mailgun-mailer::mail.blank');

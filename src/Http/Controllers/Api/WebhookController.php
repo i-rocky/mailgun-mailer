@@ -30,8 +30,8 @@ class WebhookController
 
         $mail = new MailgunMail();
         $mail->fill([
-            'from_name'       => $from_name,
-            'from_email'      => $from_email,
+            'sender_name'     => $from_name,
+            'sender_email'    => $from_email,
             'recipient_name'  => $recipient_name,
             'recipient_email' => $recipient_email,
             'subject'         => $subject,

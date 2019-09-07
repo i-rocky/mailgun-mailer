@@ -23,7 +23,11 @@ class SendMailRequest extends FormRequest
      */
     public function rules()
     {
+        $mailDomain = str_replace('.', '\.', explode('@', config('mail.from.address'))[1]);
+
         return [
+            'sender_name'     => 'required|string',
+            'sender_email'    => "required|email|regex:/(.+)@{$mailDomain}/",
             'recipient_name'  => 'required|string',
             'recipient_email' => 'required|email',
             'subject'         => 'required|string',

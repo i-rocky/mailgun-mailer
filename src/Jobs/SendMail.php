@@ -2,6 +2,7 @@
 
 namespace Rocky\MailgunMailer\Jobs;
 
+use App\User;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -38,7 +39,10 @@ class SendMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(['name' => $this->mail->recipient_name, 'email' => $this->mail->recipient_email])
-            ->send(new MailgunOutboundMail($this->mail));
+        $user        = new User();
+        $user->name  = $this->mail->recipient_name;
+        $user->email = $this->mail->recipient_email;
+
+        Mail::to($user)->send(new MailgunOutboundMail($this->mail));
     }
 }
