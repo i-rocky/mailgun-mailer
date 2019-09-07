@@ -60,7 +60,9 @@ class MailgunMail extends Model
         });
 
         static::deleting(function(MailgunMail $mail) {
-            $mail->attachments->each->delete();
+            if($mail->isForceDeleting()) {
+                $mail->attachments->each->delete();
+            }
         });
     }
 
@@ -93,6 +95,6 @@ class MailgunMail extends Model
      */
     public function attachments()
     {
-        return $this->hasMany(MailAttachment::class);
+        return $this->hasMany(MailAttachment::class, 'mail_id');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Rocky\MailgunMailer\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Rocky\MailgunMailer\Events\NewInboundMail;
@@ -14,6 +15,8 @@ class WebhookController
      * Accept incoming mail
      *
      * @param  Request  $request
+     *
+     * @return JsonResponse
      */
     public function processIncomingMail(Request $request)
     {

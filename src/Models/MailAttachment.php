@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MailAttachment extends Model
 {
-    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
@@ -33,7 +32,7 @@ class MailAttachment extends Model
 
         static::deleting(function (MailAttachment $attachment) {
             $file = storage_path($attachment->path);
-            if ($file) {
+            if (file_exists($file)) {
                 unlink($file);
             }
         });
