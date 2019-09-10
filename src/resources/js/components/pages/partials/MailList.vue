@@ -6,12 +6,12 @@
                 <th scope="row" style="width:20px">
                     <input type="checkbox" value="mail.id" @click.stop>
                 </th>
-                <td style="width:20px">
+                <td style="width:30px">
                     <i v-if="!mail.read" class="fa fa-circle"></i>
                 </td>
                 <td style="width:150px" v-text="mail.sender_name"></td>
                 <td v-html="mail.excerpt"></td>
-                <td style="width: 120px" v-text="mail.read_at.format('DD/MM/YYYY')"></td>
+                <td style="width: 120px" v-text="mail.created_at.format('DD/MM/YYYY')"></td>
             </tr>
             </tbody>
         </table>

@@ -16,6 +16,7 @@ export default {
       mailMessageInfo.body,
       mailMessageInfo.direction,
       mailMessageInfo.read_at ? moment(mailMessageInfo.read_at) : null,
+      mailMessageInfo.created_at ? moment(mailMessageInfo.created_at) : null,
     );
   },
   mapMailMessageToServer(mailMessage) {

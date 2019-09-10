@@ -8,6 +8,7 @@ export default class MailMessage {
   body;
   direction;
   read_at;
+  created_at;
 
   text;
 
@@ -15,7 +16,7 @@ export default class MailMessage {
               sender_name, sender_email,
               recipient_name, recipient_email,
               subject, body,
-              direction, read_at) {
+              direction, read_at, created_at) {
     this.id = id || null;
     this.sender_name = sender_name || null;
     this.sender_email = sender_email || null;
@@ -25,6 +26,7 @@ export default class MailMessage {
     this.body = body || '';
     this.direction = direction || null;
     this.read_at = read_at || null;
+    this.created_at = created_at;
 
     const div = document.createElement('div');
     div.innerHTML = this.body;

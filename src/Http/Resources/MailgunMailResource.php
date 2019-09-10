@@ -45,7 +45,7 @@ class MailgunMailResource extends JsonResource
             'body'            => $this->body,
             'direction'       => $this->direction,
             'created_at'      => $this->created_at->toIso8601String(),
-            'read_at'         => $this->read_at->toIso8601String(),
+            'read_at'         => $this->read_at ? $this->read_at->toIso8601String() : null,
             'attachments'     => $this
                 ->whenLoaded('attachments', MailAttachmentResource::collection($this->attachments)),
         ];
