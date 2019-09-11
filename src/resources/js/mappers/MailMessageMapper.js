@@ -22,7 +22,7 @@ export default {
   mapMailMessageToServer(mailMessage) {
     return {
       sender_name: mailMessage.sender_name,
-      sender_email: `${mailMessage.sender_email}@clearequityrelease.co.uk`,
+      sender_email: mailMessage.sender_email,
       recipient_name: mailMessage.recipient_name,
       recipient_email: mailMessage.recipient_email,
       subject: mailMessage.subject,

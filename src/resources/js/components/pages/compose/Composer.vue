@@ -15,7 +15,10 @@
                                            class="form-control"
                                            v-model="mailMessage.subject"
                                            placeholder="Please enter subject">
-                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"
+                                         v-if="error('subject')"
+                                         v-text="message('subject')"
+                                    ></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -26,7 +29,9 @@
                                               class="form-control"
                                               placeholder=""
                                               rows="4"></textarea>
-                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"
+                                         v-if="error('body')"
+                                         v-text="message('body')"></div>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +48,9 @@
                                            class="form-control"
                                            v-model="mailMessage.sender_name"
                                            placeholder="Please enter sender name">
-                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"
+                                         v-if="error('sender_name')"
+                                         v-text="message('sender_name')"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -56,11 +63,13 @@
                                                class="form-control"
                                                v-model="mailMessage.sender_email"
                                                placeholder="Please enter sender email">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">@clearequityrelease.co.uk</span>
-                                        </div>
+                                        <!--<div class="input-group-append">-->
+                                        <!--    <span class="input-group-text">@clearequityrelease.co.uk</span>-->
+                                        <!--</div>-->
                                     </div>
-                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"
+                                         v-if="error('sender_email')"
+                                         v-text="message('sender_email')"></div>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +83,9 @@
                                            class="form-control"
                                            v-model="mailMessage.recipient_name"
                                            placeholder="Please enter recipient name">
-                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"
+                                         v-if="error('recipient_name')"
+                                         v-text="message('recipient_name')"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -86,7 +97,10 @@
                                            class="form-control"
                                            v-model="mailMessage.recipient_email"
                                            placeholder="Please enter recipient email">
-                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"
+                                         v-if="error('recipient_email')"
+                                         v-text="message('recipient_email')"
+                                    ></div>
                                 </div>
                             </div>
 
@@ -178,6 +192,8 @@
 
       },
       send() {
+        this.clearErrors();
+        this.updateBody();
         this.sending = true;
         MailMessageAPI
           .send(this.mailMessage)
@@ -187,6 +203,7 @@
           })
           .catch(error => {
             message.error(error.message);
+            this.addErrors(error.data);
           })
           .finally(() => {
             this.sending = false;
@@ -213,5 +230,9 @@
 <style scoped>
     label {
         font-weight: bold;
+    }
+
+    .with-errors {
+        color: red;
     }
 </style>

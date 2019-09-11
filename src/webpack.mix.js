@@ -20,7 +20,7 @@ if (!mix.inProduction()) {
       {
         apply: (compiler) => {
           compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
-            exec('cd /home/rocky/Documents/www/equity-release-comparision && php artisan mailgun:install', (err, stdout, stderr) => {
+            exec('cd /home/rocky/Documents/www/mailgun && php artisan mailgun:install', (err, stdout, stderr) => {
               if (stdout) process.stdout.write(stdout);
               if (stderr) process.stderr.write(stderr);
             });
