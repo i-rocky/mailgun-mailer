@@ -4,9 +4,9 @@
 
 <script>
   export default {
-    name: 'MailViewer',
+    name: 'IFrame',
     props: {
-      body: String,
+      content: String,
     },
     data() {
       return {
@@ -20,11 +20,21 @@
       this.window = this.$refs.iframe.contentWindow;
       this.el = this.document.createElement('div');
       this.document.body.appendChild(this.el);
-      this.el.innerHTML = this.body;
+      this.el.innerHTML = this.content;
+      this.resetHeight();
+    },
+    methods: {
+      resetHeight() {
+        this.$nextTick(() => {
+          this.$refs.iframe.height = this.window.document.documentElement.scrollHeight ||
+            this.window.document.body.scrollHeight;
+        });
+      },
     },
     watch: {
-      body() {
-        this.el.innerHTML = this.body;
+      content() {
+        this.el.innerHTML = this.content;
+        this.resetHeight();
       },
     },
   };

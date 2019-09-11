@@ -30,10 +30,17 @@
     data() {
       return {
         mails: [],
+        timer: null,
       };
     },
     mounted() {
       this.loadMails();
+      this.timer = setInterval(() => {
+        this.loadMails();
+      }, 30 * 1000);
+    },
+    beforeDestroy() {
+      clearInterval(this.timer);
     },
     methods: {
       loadMails() {
@@ -47,7 +54,7 @@
           });
       },
       goToMail(mail) {
-        console.log(mail);
+        this.$router.push({name: 'mail', params: {mail_id: mail.id}});
       },
     },
   };

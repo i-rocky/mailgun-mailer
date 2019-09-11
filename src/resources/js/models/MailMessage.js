@@ -38,7 +38,25 @@ export default class MailMessage {
     return this.read_at !== null;
   }
 
+  get time() {
+    return this.created_at ? this.created_at.format('DD/MM/YYYY') : '';
+  }
+
+  get sender() {
+    if (this.sender_email) {
+      return `${this.sender_name || ''} <${this.sender_email}>`;
+    }
+    return '';
+  }
+
+  get recipient() {
+    if (this.recipient_email) {
+      return `${this.recipient_name || ''} <${this.recipient_email}>`;
+    }
+    return '';
+  }
+
   get excerpt() {
-    return `<strong>${this.subject}</strong> - ${this.text}`
+    return `<strong>${this.subject}</strong> - ${this.text}`;
   }
 }

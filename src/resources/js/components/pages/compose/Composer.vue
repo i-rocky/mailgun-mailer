@@ -113,7 +113,6 @@
   import tinymce from 'tinymce';
   import debounce from 'debounce';
   import {cloneDeep} from 'lodash';
-  import MailViewer from '../partials/MailViewer';
   import MailMessage from '../../../models/MailMessage';
   import MailMessageFactory from '../../../factories/MailMessageFactory';
   import MailMessageAPI from '../../../MailMessageAPI';
@@ -123,7 +122,6 @@
 
   export default {
     name: 'Composer',
-    components: {MailViewer},
     props: {
       value: MailMessage,
     },

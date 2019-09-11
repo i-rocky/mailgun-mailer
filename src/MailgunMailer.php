@@ -4,6 +4,7 @@ namespace Rocky\MailgunMailer;
 
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
+use Rocky\MailgunMailer\Models\MailgunMail;
 use Rocky\MailgunMailer\Routing\RouteRegistrar;
 
 class MailgunMailer {
@@ -16,6 +17,8 @@ class MailgunMailer {
      */
     public static function routes($callback = null, $options = [])
     {
+        Route::model('mailgun_mail', MailgunMail::class);
+
         $callback = $callback ?: function (RouteRegistrar $router) {
             $router->all();
         };

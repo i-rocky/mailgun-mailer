@@ -7,7 +7,6 @@ import Layout from './components/layout/Layout';
 require('./bootstrap');
 
 Vue.use(VueRouter);
-
 Vue.mixin(ErrorHandler);
 
 (new Vue({

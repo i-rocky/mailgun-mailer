@@ -3,6 +3,7 @@ import Sent from '../components/pages/mails/Sent/Sent';
 import Trash from '../components/pages/mails/trash/Trash';
 import Templates from '../components/pages/templates/Templates';
 import Composer from '../components/pages/compose/Composer';
+import Mail from '../components/pages/mails/view/Mail';
 
 export default [
   {
@@ -29,6 +30,11 @@ export default [
     name: 'trash',
     path: '/trash',
     component: Trash,
+  },
+  {
+    name: 'mail',
+    path: '/mail/:mail_id',
+    component: Mail,
   },
   {
     name: 'templates',

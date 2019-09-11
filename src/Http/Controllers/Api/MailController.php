@@ -49,6 +49,10 @@ class MailController
      */
     public function view(MailgunMail $mail)
     {
+        if ( ! $mail->exists) {
+            abort(404);
+        }
+
         return new MailgunMailResource($mail);
     }
 
