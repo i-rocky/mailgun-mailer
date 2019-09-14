@@ -27,8 +27,16 @@
         <hr>
 
         <div class="row">
-            <div class="col-md-12">
-                <IFrame :content="mail.body"/>
+            <div class="col-md-8">
+                <IFrame :content="mail.body" style="width: 100%"/>
+            </div>
+            <div class="col-md-3">
+                <h3>Attachments</h3>
+                <ul class="list">
+                    <li v-for="attachment in mail.attachments" :key="attachment.id">
+                        <a :href="attachment.url" v-text="attachment.name" target="_blank"></a>
+                    </li>
+                </ul>
             </div>
         </div>
 

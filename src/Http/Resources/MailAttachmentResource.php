@@ -14,6 +14,7 @@ use Rocky\MailgunMailer\Models\MailgunMail;
  * @property int mailgun_mail_id
  * @property string filename
  * @property string path
+ * @property string url
  * @property MailgunMail mail
  */
 class MailAttachmentResource extends JsonResource
@@ -30,8 +31,8 @@ class MailAttachmentResource extends JsonResource
         return [
             'id'              => $this->id,
             'mailgun_mail_id' => $this->mailgun_mail_id,
-            'filename'        => $this->filename,
-            'path'            => $this->path,
+            'name'            => $this->filename,
+            'url'             => $this->url,
         ];
     }
 }

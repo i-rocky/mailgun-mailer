@@ -1,12 +1,13 @@
 import moment from 'moment';
 import MailMessage from '../models/MailMessage';
+import MailAttachmentMapper from './MailAttachmentMapper';
 
 export default {
   mapMailMessagesToClient(messages) {
     return messages.map(message => this.mapMailMessageToClient(message));
   },
   mapMailMessageToClient(mailMessageInfo) {
-    return new MailMessage(
+    const mail = new MailMessage(
       mailMessageInfo.id,
       mailMessageInfo.sender_name,
       mailMessageInfo.sender_email,
@@ -18,6 +19,10 @@ export default {
       mailMessageInfo.read_at ? moment(mailMessageInfo.read_at) : null,
       mailMessageInfo.created_at ? moment(mailMessageInfo.created_at) : null,
     );
+    if (mailMessageInfo.attachments) {
+      mail.attachments = MailAttachmentMapper.mapMailAttachmentsToClient(mailMessageInfo.attachments);
+    }
+    return mail;
   },
   mapMailMessageToServer(mailMessage) {
     return {

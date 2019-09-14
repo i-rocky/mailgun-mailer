@@ -17,6 +17,9 @@
     },
     mounted() {
       this.document = this.$refs.iframe.contentDocument;
+      this.document.open();
+      this.document.close();
+      this.document.body.onload = this.resetHeight();
       this.window = this.$refs.iframe.contentWindow;
       this.el = this.document.createElement('div');
       this.document.body.appendChild(this.el);

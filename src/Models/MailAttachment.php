@@ -45,4 +45,12 @@ class MailAttachment extends Model
     {
         return $this->belongsTo(MailgunMail::class);
     }
+
+    /**
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getUrlAttribute()
+    {
+        return url(str_replace('app/public/', 'storage/', $this->path));
+    }
 }

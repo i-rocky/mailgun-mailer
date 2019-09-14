@@ -12,6 +12,8 @@ export default class MailMessage {
 
   text;
 
+  attachments = [];
+
   constructor(id,
               sender_name, sender_email,
               recipient_name, recipient_email,

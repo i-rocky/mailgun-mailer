@@ -64,7 +64,7 @@ class WebhookController
             $attachment = new MailAttachment();
             $attachment->mail()->associate($mail);
 
-            $attachment->filename = $file->getFilename();
+            $attachment->filename = $file->getClientOriginalName();
             $attachment->path     = $file->hashName('app/public/attachments');
             $attachment->save();
         }
